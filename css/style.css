@@ -1,4 +1,99 @@
+
+
+/*Page Header*/
 h1{
-  border-color: #d3e644;
-  border-style: dashed;
+  position: relative;
+  text-align: center;
+  flex: 1
+}
+
+header {
+  display: flex;
+}
+
+/*Navigation*/
+.navMenu {
+  position: relative;
+  vertical-align: bottom;
+  flex: 1
+}
+
+.navMenu ul {
+  display: flex;
+  list-style-type: none;
+  align-content: stretch;
+}
+
+.navMenu li {
+  font-size: 28px;
+  display: inline;
+  text-align: center;
+  flex: 1;
+}
+
+/*Containers*/
+.container {
+  display: grid; 
+  grid-template-columns: 1fr 0.5fr; 
+  grid-template-rows: 1fr 1fr; 
+  gap: 0px 20px; 
+  grid-template-areas: 
+    ". ."
+    ". ."; 
+}
+
+.formcontainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px 4px;
+}
+
+/*Table and Add New Button*/
+.todo-table {
+  grid-column: 1;
+  margin: 8px;
+}
+
+.addtodobutton {
+  position: relative;
+  left: 70%;
+}
+
+/*Add new TODO Form*/
+.newtodoform {
+  border: 1px;
+  border-color: black;
+  border-style: solid;
+  padding-bottom: 5%;
+  padding-left: 2%;
+  padding-right: 2%;
+  margin-top: 4%;
+}
+
+.name, .description {
+  max-width: 80%;
+}
+
+/*Search and Table Filter*/
+.filterandload {
+  display: flex;
+}
+
+.filterandload h2 {
+  flex: 1;
+}
+
+.categoryselect{
+  max-height: 30px;
+  position: relative;
+  top: 20px;
+}
+
+.searchbox {
+  max-height: 24px;
+  max-width: 140px;
+  position: relative;
+  top: 20px;
+  margin-left: 8px;
 }

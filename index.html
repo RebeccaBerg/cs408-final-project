@@ -3,16 +3,92 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Hello World!</title>
+  <title>!</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <h1>HTML Rocks!</h1>
-  <img src="img/compile.jpeg">
-  <script type="module" src="js/main.js"></script>
+  <div class="headerdiv">
+    <header>
+      <h1>Landing Page</h1>
+      <div class="navMenu">
+        <ul>
+          <li><a href="journal.html">Journal</a></li>
+          <li><a href="calendar.html">Calendar</a></li>
+          <li><a href="relax.html">Relax</a></li>
+        </ul>
+      </div>
+    </header>
+  </div>
+
+  <div class="container">
+    <div>
+    <div class="filterandload">
+      <h2>TODO</h2>
+        <select class="categoryselect">
+          <option value="All">All Categories</option>
+          <option value="HouseHold">HouseHold</option>
+          <option value="YardWork">YardWork</option>
+          <option value="Work">Work</option>
+          <option value="Other">Other</option>
+        </select>
+        <input type="text" class="searchbox" placeholder="Search TODO items"/>
+    </div>
+    <table class="todo-table" id="todo-table" border="1">
+      <thead>
+          <tr>
+            <th>Importance</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Delete</th>
+          </tr>
+      </thead>
+      <tbody id="table-body">
+      </tbody>
+  </table>
+  <button class="addtodobutton">Add new TODO</button>
+  <div class="newtodoform">
+  <form>
+    <h3 class="addnewheader">Add New TODO</h3>
+    <div class="formcontainer">
+      <div>
+      <label for="importance-select">Importance Level:</label>
+    <select class="importance-select" id="importance-select">
+    </select>
+    </div>
+    <div>
+    <label for="category">Category:</label>
+    <select class="category">
+      <option value="Household">Household</option>
+      <option value="Yardwork">Yard Work</option>
+      <option value="Work">Work</option>
+      <option value="Other">Other</option>
+    </select>
+    </div>
+    <div>
+    <label for="text">Name:</label>
+    <input type="text" class="name"/>
+    </div>
+    <div>
+    <label for="description">Description:</label>
+    <input type="text" class="description"/>
+    </div>
+    </div>
+  </form>
+  </div>
+  </div>
+
+  <aside>
+    <div>
+      <h2>Journal</h2>
+      <h2 id="datetime"></h2>
+    </div>
+  </aside>
+  <script src="js/main.js"></script>
+</div>
 </body>
 
 </html>

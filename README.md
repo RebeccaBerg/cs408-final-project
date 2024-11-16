@@ -10,3 +10,7 @@ I would like to design a TODO style website that also serves as a kind of journa
 ![wireframe](Wireframe_2.png)
 ![wireframe](Wireframe_3.png)
 ![wireframe](Wireframe_4.png)
+
+## Sources
+
+- <select> - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
