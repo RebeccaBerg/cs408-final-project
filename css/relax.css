@@ -1,3 +1,30 @@
+html {
+    min-height: 100%;   
+    min-width: 600px;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgb(192, 255, 192), rgb(158, 77, 196));
+}
+
+body {
+    min-height: 90%;
+    display: grid;
+    color: rgb(255, 90, 165);
+    align-items: center;
+}
+
 h1 {
     margin: 2%;
+}
+
+button {
+    background-color: rgb(255, 90, 165);
+    color: whitesmoke;
+    border-radius: 20px;
+    padding: 4px;
+    box-shadow: 0 .2em .2em gray;
+}
+
+.animal-pic {
+    margin-top: 8px;
+    max-height: 400px;
 }

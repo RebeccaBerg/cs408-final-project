@@ -11,12 +11,30 @@ let mantras = [
     "'Courage is like a muscle.  We strengthen it by use.' - Ruth Gordo"
 ];
 
+let animals = [
+    "img/duckling.jpg",
+    "img/guinea_pigs.jpg",
+    "img/hedgehog.jpg",
+    "img/kitten.jpg",
+    "img/llama.jpg",
+    "img/penguin.jpg",
+    "img/puppy.jpg",
+    "img/squirrel.jpg"
+]
+
 document.addEventListener('DOMContentLoaded', function () {
     let mantraButton = document.getElementById('mantra-button');
     let mantraText = document.getElementById('mantra-text');    
 
     mantraButton.addEventListener("click", function() {
         mantraText.innerHTML = mantras[Math.floor(Math.random() * mantras.length)];
+    });
+
+    let animalButton = document.getElementById('animal-button');
+    let animalImg = document.getElementById('animal-pic');
+
+    animalButton.addEventListener("click", function() {
+        animalImg.src= animals[Math.floor(Math.random() * animals.length)]
     });
 });
 
