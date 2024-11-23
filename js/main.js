@@ -1,49 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     const day = new Date().getUTCDate();
     let monthnum = new Date().getMonth();
-    let month = "";
-    switch(monthnum) {
-        case 0:
-            month += "Jan";
-            break;
-        case 1:
-            month += "Feb";
-            break;
-        case 2:
-            month += "Mar";
-            break;
-        case 3:
-            month += "Apr";
-            break;
-        case 4:
-            month += "May";
-            break;
-        case 5:
-            month += "Jun";
-            break;
-        case 6:
-            month += "Jul";
-            break;
-        case 7:
-            month += "Aug";
-            break;
-        case 8:
-            month += "Sept";
-            break;
-        case 9:
-            month += "Oct";
-            break;
-        case 10:
-            month += "Nov";
-            break;
-        case 11:
-            month += "Dec";
-            break;
-        default:
-            break;
-    }
+    let month = ["Jan", "Feb", "March", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+
     const date = document.getElementById('datetime');
-    date.innerHTML = day + " " + month;
+    date.innerHTML = day + " " + month[monthnum];
 
     const importance = document.getElementById('importance-select');
     let importancehtml = "";
@@ -51,5 +12,80 @@ document.addEventListener('DOMContentLoaded', function() {
         importancehtml += "<option value='" + i + "'>" + i + "</option>\n";
     }
     importance.innerHTML = importancehtml;
+
+    const newToDoForm = document.getElementById('newtodoform');
+    newToDoForm.style.display = "none";
+    const addNewToDoButton = document.getElementById('addtodobutton');
+    addNewToDoButton.addEventListener('click', function () {
+        if (newToDoForm.style.display === "none") {
+            newToDoForm.style.display = "block";
+        }
+    })
+
+    const formsubmitbutton = this.getElementById('submitnewtodobutton');
+    formsubmitbutton.addEventListener("click", submit);
+
+    load();
+
 });
+
+function load() {
+    let table = document.getElementById("table-body");
+    table.innerHTML = "";
+    fetch("https://w0s6j6k7n4.execute-api.us-east-2.amazonaws.com/items")
+    .then(response => response.json())
+    .then(data => data.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${item.importance}</td>
+            <td>${item.name}</td>
+            <td>${item.category}</td>
+            <td>${item.description}</td>
+            <td><button class="delete-btn" data-id="${item.name}">Delete</button></td>
+        `;
+        table.appendChild(tr);
+    }));
+}
+
+function submit() {
+ //Get form object from html
+ let form = document.querySelector('form');
+    
+ //Add event for submit action (button press)
+ form.addEventListener('submit', (event) => {
+     //Prevent the default form action
+     event.preventDefault();      
+ 
+     // Create variable for each input
+     let importance = document.getElementById('importance-select').value;
+     let category = document.getElementById('category').value;
+     let name = document.getElementById('name').value;
+     let description = document.getElementById('description').value;
+
+     const newToDo = {
+        name: name,
+        importance: importance,
+        category: category,
+        description: description
+    };
+
+    fetch('https://w0s6j6k7n4.execute-api.us-east-2.amazonaws.com/items', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newToDo)
+    })
+    .then(response => {
+        load();
+        newToDoForm.style.display = "none";
+    })
+
+     //Reset the form values
+    form.reset();
+    });
+}
+
+
+
 

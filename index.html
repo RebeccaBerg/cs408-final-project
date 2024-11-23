@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>!</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,13 +14,13 @@
   <div class="headerdiv">
     <header>
       <h1>Landing Page</h1>
-      <div class="navMenu">
+      <nav class="navMenu">
         <ul>
           <li><a href="journal.html">Journal</a></li>
           <li><a href="calendar.html">Calendar</a></li>
           <li><a href="relax.html">Relax</a></li>
         </ul>
-      </div>
+      </nav>
     </header>
   </div>
 
@@ -49,8 +50,8 @@
       <tbody id="table-body">
       </tbody>
   </table>
-  <button class="addtodobutton">Add new TODO</button>
-  <div class="newtodoform">
+  <button class="addtodobutton" id="addtodobutton">Add new TODO</button>
+  <div class="newtodoform" id="newtodoform">
   <form>
     <h3 class="addnewheader">Add New TODO</h3>
     <div class="formcontainer">
@@ -61,7 +62,7 @@
     </div>
     <div>
     <label for="category">Category:</label>
-    <select class="category">
+    <select class="category" id="category">
       <option value="Household">Household</option>
       <option value="Yardwork">Yard Work</option>
       <option value="Work">Work</option>
@@ -70,13 +71,14 @@
     </div>
     <div>
     <label for="text">Name:</label>
-    <input type="text" class="name"/>
+    <input type="text" class="name" id="name"/>
     </div>
     <div>
     <label for="description">Description:</label>
-    <input type="text" class="description"/>
+    <input type="text" class="description" id="description"/>
     </div>
     </div>
+    <button class="submitnewtodobutton" id="submitnewtodobutton">Submit</button>
   </form>
   </div>
   </div>
