@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 
     const formsubmitbutton = this.getElementById('submitnewtodobutton');
-    formsubmitbutton.addEventListener("click", submit);
+    formsubmitbutton.addEventListener("click", submit(newToDoForm));
 
     load();
 
@@ -47,7 +47,7 @@ function load() {
     }));
 }
 
-function submit() {
+function submit(newToDoForm) {
  //Get form object from html
  let form = document.querySelector('form');
     
@@ -78,11 +78,13 @@ function submit() {
     })
     .then(response => {
         load();
-        newToDoForm.style.display = "none";
     })
 
      //Reset the form values
     form.reset();
+    if (newToDoForm.style.display === "block") {
+        newToDoForm.style.display = "none";
+    }
     });
 }
 
