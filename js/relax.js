@@ -22,6 +22,18 @@ let animals = [
     "img/squirrel.jpg"
 ]
 
+/* Alt texts for the animal images */
+let animalalttext = [
+    "Two cute ducklings cuddling.",
+    "Two fluffy guinea pigs with some leafy greens.",
+    "A hedgehog.",
+    "A kitten being held aloft wearing a necklace of flowers.",
+    "A couple of fluffy llamas in a field.",
+    "A bunch of penguins with a couple of fluffy babies.",
+    "A puppy on a white blanket.",
+    "A squirrel looking at some red flowers."
+]
+
 document.addEventListener('DOMContentLoaded', function () {
     let mantraButton = document.getElementById('mantra-button');
     let mantraText = document.getElementById('mantra-text');    
@@ -34,7 +46,9 @@ document.addEventListener('DOMContentLoaded', function () {
     let animalImg = document.getElementById('animal-pic');
 
     animalButton.addEventListener("click", function() {
-        animalImg.src= animals[Math.floor(Math.random() * animals.length)]
+        let value = Math.floor(Math.random() * animals.length);
+        animalImg.alt= animalalttext[value];
+        animalImg.src= animals[value];        
     });
 });
 

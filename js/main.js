@@ -19,14 +19,45 @@ document.addEventListener('DOMContentLoaded', function() {
     addNewToDoButton.addEventListener('click', function () {
         if (newToDoForm.style.display === "none") {
             newToDoForm.style.display = "block";
+            addNewToDoButton.innerHTML = "Hide Form";
+        }
+        else {
+            newToDoForm.style.display = "none";
+            addNewToDoButton.innerHTML = "Add new TODO";
         }
     })
 
     const formsubmitbutton = this.getElementById('submitnewtodobutton');
-    formsubmitbutton.addEventListener("click", submit(newToDoForm));
+    formsubmitbutton.addEventListener("click", submit);
 
     load();
 
+    const journalAside = document.getElementById('journals');
+    journalAside.innerHTML = "";
+    fetch("https://dw6jqtiaq9.execute-api.us-east-2.amazonaws.com/items")
+    .then(response => response.json())
+    .then(data => {
+            for(let i = 0; i < 6; i++) {
+                const tr = document.createElement('tr');
+                if (i > data.length - 1) {
+                    tr.innerHTML = "";
+                }
+                else{
+                    tr.innerHTML = `<td><button class="journal-entry" data-id="${data[i].id}">${data[i].title}</button></td>`;
+                }
+                journalAside.appendChild(tr);
+            }
+            const openEntryButtons = document.querySelectorAll('.journal-entry');
+            openEntryButtons.forEach(button => {
+            button.addEventListener('click', () => clickEntry(button.dataset.id));
+        })
+        });
+
+    let category = document.getElementById('categoryselect');
+    category.addEventListener('input', categorySelect);
+
+    let searchbox = document.getElementById('searchbox');
+    searchbox.addEventListener('input', textsearch);
 });
 
 function load() {
@@ -34,20 +65,83 @@ function load() {
     table.innerHTML = "";
     fetch("https://w0s6j6k7n4.execute-api.us-east-2.amazonaws.com/items")
     .then(response => response.json())
-    .then(data => data.forEach(item => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td>${item.importance}</td>
-            <td>${item.name}</td>
-            <td>${item.category}</td>
-            <td>${item.description}</td>
-            <td><button class="delete-btn" data-id="${item.name}">Delete</button></td>
-        `;
-        table.appendChild(tr);
-    }));
+    .then(data => {
+            data.forEach(item => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${item.importance}</td>
+                <td>${item.name}</td>
+                <td>${item.category}</td>
+                <td>${item.description}</td>
+                <td><button class="delete-button" data-id="${item.name}">Delete</button></td>
+            `;
+            table.appendChild(tr);
+        });
+        const deleteButtons = document.querySelectorAll('.delete-button');
+        deleteButtons.forEach(button => {
+        button.addEventListener('click', () => tableItemDelete(button.dataset.id));
+        });
+    });
+
 }
 
-function submit(newToDoForm) {
+function categorySelect() {
+    let categorySelect = document.getElementById('categoryselect');
+    search(categorySelect.value);
+}
+
+function textsearch() {
+    let searchbox = document.getElementById('searchbox');
+    search(searchbox.value);
+}
+
+function search(text) {
+    if (text === 'All' || text === '') {
+        load();
+    }
+    else {
+    let table = document.getElementById("table-body");
+    table.innerHTML = "";
+    fetch("https://w0s6j6k7n4.execute-api.us-east-2.amazonaws.com/items")
+    .then(response => response.json())
+    .then(data => {
+            data.forEach(item => {
+                let importance = item.importance.toString();
+                let name = item.name.toString();
+                let category = item.category.toString();
+                let description = item.description.toString();
+                if (importance.toLowerCase() === text.toLowerCase() || name.toLowerCase() === text.toLowerCase() || category.toLowerCase() === text.toLowerCase() || description.toLowerCase() === text.toLowerCase()) {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                    <td>${item.importance}</td>
+                    <td>${item.name}</td>
+                    <td>${item.category}</td>
+                    <td>${item.description}</td>
+                    <td><button class="delete-button" data-id="${item.name}">Delete</button></td>
+                `;
+                table.appendChild(tr);
+            }
+        });
+        const deleteButtons = document.querySelectorAll('.delete-button');
+        deleteButtons.forEach(button => {
+        button.addEventListener('click', () => tableItemDelete(button.dataset.id));
+        });
+    });
+}
+}
+
+function tableItemDelete(name) {
+    fetch(`https://w0s6j6k7n4.execute-api.us-east-2.amazonaws.com/items/${name}`, {
+        method: 'DELETE',
+    })
+    .then(response => {
+        if (response.ok) {
+            load();
+        }
+    });
+}
+
+function submit() {
  //Get form object from html
  let form = document.querySelector('form');
     
@@ -82,12 +176,12 @@ function submit(newToDoForm) {
 
      //Reset the form values
     form.reset();
-    if (newToDoForm.style.display === "block") {
-        newToDoForm.style.display = "none";
-    }
     });
 }
 
 
-
+function clickEntry(id) {
+    localStorage.setItem('journalId',id)
+    document.location.href='journalentry.html';
+}
 

@@ -1,10 +1,10 @@
 <!doctype html>
-<html>
+<html lang="en-US">
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>!</title>
+  <title>Journalaxation</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/style.css">
@@ -13,11 +13,10 @@
 <body>
   <div class="headerdiv">
     <header>
-      <h1>Landing Page</h1>
+      <h1>Journalaxation</h1>
       <nav class="navMenu">
         <ul>
           <li><a href="journal.html">Journal</a></li>
-          <li><a href="calendar.html">Calendar</a></li>
           <li><a href="relax.html">Relax</a></li>
         </ul>
       </nav>
@@ -28,14 +27,15 @@
     <div>
     <div class="filterandload">
       <h2>TODO</h2>
-        <select class="categoryselect">
+        <label class="categoryselectlabel" for="categoryselect">Search by Category:</label>
+        <select class="categoryselect" id="categoryselect">
           <option value="All">All Categories</option>
           <option value="HouseHold">HouseHold</option>
           <option value="YardWork">YardWork</option>
           <option value="Work">Work</option>
           <option value="Other">Other</option>
         </select>
-        <input type="text" class="searchbox" placeholder="Search TODO items"/>
+        <input type="text" class="searchbox" id="searchbox" placeholder="Search TODO items"/>
     </div>
     <table class="todo-table" id="todo-table" border="1">
       <thead>
@@ -57,12 +57,12 @@
     <div class="formcontainer">
       <div>
       <label for="importance-select">Importance Level:</label>
-    <select class="importance-select" id="importance-select">
+    <select class="importance-select" id="importance-select" required>
     </select>
     </div>
     <div>
     <label for="category">Category:</label>
-    <select class="category" id="category">
+    <select class="category" id="category" required>
       <option value="Household">Household</option>
       <option value="Yardwork">Yard Work</option>
       <option value="Work">Work</option>
@@ -70,8 +70,8 @@
     </select>
     </div>
     <div>
-    <label for="text">Name:</label>
-    <input type="text" class="name" id="name"/>
+    <label for="name">Name:</label>
+    <input type="text" class="name" id="name" required/>
     </div>
     <div>
     <label for="description">Description:</label>
@@ -85,8 +85,12 @@
 
   <aside>
     <div>
-      <h2>Journal</h2>
       <h2 id="datetime"></h2>
+      <h2>Journal</h2>
+      <table class="journals" id="journals" border="1">
+        <tbody id="journals-body">
+        </tbody>
+    </table>
     </div>
   </aside>
   <script src="js/main.js"></script>

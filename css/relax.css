@@ -18,13 +18,18 @@ h1 {
 
 button {
     background-color: rgb(255, 90, 165);
-    color: whitesmoke;
+    cursor: pointer;
+    color: black;
     border-radius: 20px;
-    padding: 4px;
+    padding: 8px;
     box-shadow: 0 .2em .2em gray;
 }
 
 .animal-pic {
     margin-top: 8px;
     max-height: 400px;
+}
+
+button:hover {
+    background-color: rgb(202, 31, 108);
 }

@@ -14,3 +14,5 @@ I would like to design a TODO style website that also serves as a kind of journa
 ## Sources
 
 - <select> - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
+- localstorage - https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+- fetch api - https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
